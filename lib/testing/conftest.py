@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 
-def pytest_itemcollected(item):
-    par = item.parent.obj
-    node = item.obj
-    pref = par.__doc__.strip() if par.__doc__ else par.__class__.__name__
-    suf = node.__doc__.strip() if node.__doc__ else node.__name__
-    if pref or suf:
-        item._nodeid = ' '.join((pref, suf))
+class Dog:
+    species = "Canis familiaris"  # class attribute
+
+    def __init__(self, name, age):
+        self.name = name          # instance attribute
+        self.age = age            # instance attribute
+
+dog1 = Dog("Buddy", 3)
+dog2 = Dog("Milo", 2)
+
+print(dog1.name)      # Buddy (instance attribute)
+print(dog1.species)   # Canis familiaris (class attribute)
+print(dog2.species)   # Canis familiaris (shared)
